@@ -50,6 +50,18 @@ To get at your results, you can get a test, and call `results`.
 
     AB.get(:home_page).results
 
+## Testing
+
+In tests, if you want to guarantee a certain alternative will be shown,
+you can do so by specifying it with `use`
+
+    it "should say 'NEW TWITTER' showing new Twitter" do
+      AB.test(:new_twitter).use(:new) do
+        get "/twitter/show"
+        page.should have_content("NEW TWITTER")
+      end
+    end
+
 ### TODO
 
 * More interesting statistics, including relevance information
